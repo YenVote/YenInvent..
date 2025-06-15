@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YenInVent</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen">
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        <div class="pulse-ring"></div>
+        
+        <div class="auth-card">
+            <div class="logo">
+                <h1>YenIn<span>Vent</span></h1>
+                <p>Professional Sales Management</p>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            
+            <button class="login-btn" id="login-btn">
+                <i class="fas fa-lock-open"></i> Enter Dashboard
+            </button>
+        </div>
+    </div>
+    
+    <!-- Main Dashboard -->
+    <div class="dashboard container" id="dashboard">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="app-title">YenInVent Dashboard</div>
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">A</div>
+                <div>
+                    <div id="user-name">Admin User</div>
+                    <div id="user-role">Administrator</div>
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard-tab">Dashboard</button>
+            <button class="tab-btn" data-tab="pos-tab">POS System</button>
+            <button class="tab-btn" data-tab="products-tab">Products</button>
+            <button class="tab-btn" data-tab="sales-tab">Sales</button>
+            <button class="tab-btn" data-tab="inventory-tab">Inventory</button>
+        </div>
+        
+        <!-- Dashboard Tab -->
+        <div class="content-section active" id="dashboard-tab">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Sales Overview</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="stat-value" id="total-sales">0.00</div>
+                    <div class="stat-label">Total Sales</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-box-open"></i></div>
+                    <div class="stat-value" id="total-products">0</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="stat-value" id="today-sales">GH₵0.00</div>
+                    <div class="stat-label">Today's Sales</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="stat-value" id="low-stock">0</div>
+                    <div class="stat-label">Low Stock Items</div>
+                </div>
+            </div>
+            
+            <h2 class="section-title"><i class="fas fa-history"></i> Recent Sales</h2>
+            
+            <div class="table-container">
+                <table id="recent-sales-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Recent sales will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- POS Tab -->
+        <div class="content-section" id="pos-tab">
+            <h2 class="section-title"><i class="fas fa-cash-register"></i> Point of Sale</h2>
+            
+            <div class="pos-container">
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be populated here -->
+                </div>
+                
+                <div class="cart-container">
+                    <h3><i class="fas fa-shopping-cart"></i> Current Sale</h3>
+                    
+                    <div class="cart-items" id="cart-items">
+                        <!-- Cart items will be populated here -->
+                    </div>
+                    
+                    <div class="cart-total" id="cart-total">GH₵0.00</div>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-btn" data-method="cash">Cash</div>
+                        <div class="payment-btn" data-method="online">Momo</div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="complete-sale" style="width: 100%;">
+                        <i class="fas fa-check-circle"></i> Complete Sale
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Tab -->
+        <div class="content-section" id="products-tab">
+            <h2 class="section-title"><i class="fas fa-boxes"></i> Product Management</h2>
+            
+            <div class="form-grid">
+                <div>
+                    <h3>Add New Product</h3>
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" id="product-name">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="product-category">
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Home & Kitchen">Home & Kitchen</option>
+                            <option value="Books">Books</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price ($)</label>
+                        <input type="number" id="product-price" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Quantity</label>
+                        <input type="number" id="product-stock">
+                    </div>
+                    <button class="btn btn-primary" id="add-product">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+                
+                <div>
+                    <h3>Product List</h3>
+                    <div class="table-container">
+                        <table id="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Products will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sales Tab -->
+        <div class="content-section" id="sales-tab">
+            <h2 class="section-title"><i class="fas fa-receipt"></i> Sales History</h2>
+            
+            <div class="table-container">
+                <table id="sales-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Date & Time</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Sales will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Inventory Tab -->
+        <div class="content-section" id="inventory-tab">
+            <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Inventory Management</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-items">0</div>
+                    <div class="stat-label">Total Items</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value" id="out-of-stock">0</div>
+                    <div class="stat-label">Out of Stock</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value" id="low-stock-count">0</div>
+                    <div class="stat-label">Low Stock</div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Current Stock</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Inventory will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
